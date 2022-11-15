@@ -5,7 +5,7 @@ const EditComponent =
     return(
         <>
     <MDBListGroupItem className='d-flex justify-content-between'>
-            <div className="flex-column d-grid gap-3">
+            <div className="flex-column d-grid gap-3 w-100">
                 <label htmlFor="firstNameId"><h3>Info</h3></label>
                 <input
                     className="u-full-width"

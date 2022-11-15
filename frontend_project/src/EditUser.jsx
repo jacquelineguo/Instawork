@@ -62,15 +62,14 @@ export function EditUser() {
 
   return (
     <>
-    
-    <div>
-        <div class="col-sm-6"><p class="float-start"></p></div> 
-        <div class="col-lg-6" onClick={handleBack}>
+    <div className="d-flex flex-column align-items-center mt-5">
+    <div className="justify-content-center">
+    <div className="d-flex justify-content-end">
+        <div onClick={handleBack}>
                 <i class="far fa-window-close fa-2x float-end text-primary" /> 
         </div>
     </div>
-    <div className="d-flex flex-column align-items-center mt-5">
-        <MDBListGroup style={{ minWidth: '22rem' }} light>
+        <MDBListGroup style={{ minWidth: '25rem' }} light>
         <MDBListGroupItem className='d-flex justify-content-between'>
             <div className="flex-column">
                 <h1>Edit team member</h1>
@@ -79,7 +78,7 @@ export function EditUser() {
         </MDBListGroupItem>
         {EditComponent(firstName, lastName, email, phone, handleFirstName, handleLastName, handleEmail, handlePhone)}
                 </MDBListGroup>
-        <MDBListGroup style={{ minWidth: '22rem' }} light>
+        <MDBListGroup style={{ minWidth: '25rem' }} light>
             <MDBListGroupItem>
 
             <div className="flex-column d-grid gap-3">
@@ -92,13 +91,13 @@ export function EditUser() {
                 </div>
             </div>
             </MDBListGroupItem>
-            <MDBListGroupItem class="d-flex justify-content-between">
-                <div>
-                    <label class="form-check-label fs-5" for="adminId">
+            <MDBListGroupItem>
+                <div class="d-flex justify-content-between">
+                    <label class="form-check-label fs-5 text-secondary" for="adminId">
                         Admin - Can delete members
                     </label>
-                </div>
                     <input class="form-check-input" type="radio" onChange={handleAdmin} name="admin" id="adminId" value="admin" checked={isAdmin}/>
+                </div>
             </MDBListGroupItem>
             <MDBListGroupItem>
                 <button onClick={() => handleDelete(userId)} className="text-danger">Delete</button>
@@ -107,8 +106,9 @@ export function EditUser() {
                 </button>
             </MDBListGroupItem>
         </MDBListGroup>
-                
+        </div>      
     </div>
     </>
+    
   );
 }

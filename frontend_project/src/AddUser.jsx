@@ -58,8 +58,8 @@ export function AddUser() {
   return (
     <>
     <div className="d-flex flex-column align-items-center mt-5">
-
-    <div class="d-flex justify-content-end w-auto">
+    <div className="justify-content-center">
+    <div className="d-flex justify-content-end">
         <div onClick={handleBack}>
                 <i class="far fa-window-close fa-2x float-end text-primary" /> 
         </div>
@@ -88,7 +88,7 @@ export function AddUser() {
             </MDBListGroupItem>
             <MDBListGroupItem>
                 <div class="d-flex justify-content-between">
-                    <label class="form-check-label fs-5" for="adminId">
+                    <label class="form-check-label fs-5 text-secondary" for="adminId">
                         Admin - Can delete members
                     </label>
                     <input class="form-check-input" type="radio" onChange={handleAdmin} name="admin" id="adminId" value="admin" checked={isAdmin}/>
@@ -100,7 +100,7 @@ export function AddUser() {
                 </button>
             </MDBListGroupItem>
         </MDBListGroup>
-                
+        </div>      
     </div>
     </>
   );
