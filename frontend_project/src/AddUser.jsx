@@ -15,7 +15,6 @@ export function AddUser() {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [isAdmin, setAdmin] = useState(false);
-  const [error, setError] = useState(null);
 
   const handleFirstName = (e) => setFirstName(e.target.value);
   const handleLastName = (e) => setLastName(e.target.value);
@@ -46,10 +45,7 @@ export function AddUser() {
         })
       );
 
-      setError(null);
       navigate(`/`, { replace: false });
-    } else {
-      setError("Fill in all fields");
     }
 
     setFirstName("");

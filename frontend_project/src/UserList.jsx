@@ -1,5 +1,4 @@
-import { fetchUsers, userDeleted } from "./usersSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 import { Link } from "react-router-dom";
 import { MDBListGroup, MDBListGroupItem } from 'mdb-react-ui-kit';
@@ -7,14 +6,10 @@ import { useNavigate } from 'react-router-dom'
 
 
 export function UserList() {
-  const dispatch = useDispatch();
 
   const { entities } = useSelector((state) => state.users);
   const loading = useSelector((state) => state.loading);
 
-  const handleDelete = (id) => {
-    dispatch(userDeleted({ id }));
-  };
   const navigate = useNavigate()
   const handleOnClick = (id) => navigate(`/edit-user/${id}`, { replace: false });
 

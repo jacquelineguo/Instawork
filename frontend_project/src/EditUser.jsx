@@ -25,7 +25,6 @@ export function EditUser() {
   const [phone, setPhone] = useState(user.phone);
   const [email, setEmail] = useState(user.email);
   const [isAdmin, setAdmin] = useState(user.isAdmin);
-  const [error, setError] = useState(null);
 
   const handleFirstName = (e) => setFirstName(e.target.value);
   const handleLastName = (e) => setLastName(e.target.value);
@@ -57,10 +56,7 @@ export function EditUser() {
           })
         );
 
-      setError(null);
       navigate(`/`, { replace: false });
-    } else {
-      setError("Fill in all fields");
     }
   };
 
