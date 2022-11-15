@@ -17,15 +17,13 @@ export function UserList() {
 
   return (
     <div className="container">
-        <div class="row">
-            <div class="col-sm-6"><p class="float-start"></p></div> 
-            <div class="col-lg-6">
+        <div className="d-flex justify-content-center">
+        <div>
+            <div class="justify-content-end">
                 <Link to="/add-user">
                     <i class="fas fa-plus fa-2x float-end" />
                 </Link>
             </div>
-        </div>
-        <div className="d-flex justify-content-center">
             <MDBListGroup light>
                 <MDBListGroupItem className='d-flex justify-content-between'>
                 <div className="flex-column">
@@ -58,6 +56,7 @@ export function UserList() {
                     </>
                 )}
             </MDBListGroup>
+            </div>
         </div>
         
                 </div>

@@ -57,13 +57,13 @@ export function AddUser() {
 
   return (
     <>
-    <div>
-        <div class="col-sm-6"><p class="float-start"></p></div> 
-        <div class="col-lg-6" onClick={handleBack}>
+    <div className="d-flex flex-column align-items-center mt-5">
+
+    <div class="d-flex justify-content-end w-auto">
+        <div onClick={handleBack}>
                 <i class="far fa-window-close fa-2x float-end text-primary" /> 
         </div>
     </div>
-    <div className="d-flex flex-column mb-4 align-items-center mt-5">
         <MDBListGroup style={{ minWidth: '25rem' }} light>
         <MDBListGroupItem className='d-flex justify-content-between'>
             <div className="flex-column">
@@ -86,8 +86,8 @@ export function AddUser() {
                 </div>
             </div>
             </MDBListGroupItem>
-            <MDBListGroupItem class="d-flex justify-content-between">
-                <div>
+            <MDBListGroupItem>
+                <div class="d-flex justify-content-between">
                     <label class="form-check-label fs-5" for="adminId">
                         Admin - Can delete members
                     </label>
