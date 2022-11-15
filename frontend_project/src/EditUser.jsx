@@ -4,7 +4,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { userUpdated, userDeleted } from "./usersSlice";
 import { MDBListGroup, MDBListGroupItem } from 'mdb-react-ui-kit';
-
+import EditComponent from "./EditComponent";
 
 export function EditUser() {
   const { pathname } = useLocation();
@@ -24,16 +24,25 @@ export function EditUser() {
   const [lastName, setLastName] = useState(user.lastName);
   const [phone, setPhone] = useState(user.phone);
   const [email, setEmail] = useState(user.email);
+  const [isAdmin, setAdmin] = useState(user.isAdmin);
   const [error, setError] = useState(null);
 
   const handleFirstName = (e) => setFirstName(e.target.value);
   const handleLastName = (e) => setLastName(e.target.value);
   const handlePhone = (e) => setPhone(e.target.value);
   const handleEmail = (e) => setEmail(e.target.value);
+  const handleAdmin = (e) => {
+    if (e.target.value === 'admin'){
+        setAdmin(true);
+    } else {
+        setAdmin(false);
+    }
+  };
   const handleDelete = (id) => {
     dispatch(userDeleted({ id }));
     navigate(`/`, { replace: false });
   };
+  const handleBack = () => {navigate('/', {replace: false})};
 
   const handleClick = () => {
     if (firstName && lastName && email && phone) {
@@ -44,6 +53,7 @@ export function EditUser() {
             lastName,
             email,
             phone,
+            isAdmin,
           })
         );
 
@@ -56,13 +66,14 @@ export function EditUser() {
 
   return (
     <>
+    
     <div>
         <div class="col-sm-6"><p class="float-start"></p></div> 
-        <div class="col-lg-6">
+        <div class="col-lg-6" onClick={handleBack}>
                 <i class="far fa-window-close fa-2x float-end text-primary" /> 
         </div>
     </div>
-    <div className="d-flex justify-content-around">
+    <div className="d-flex flex-column align-items-center mt-5">
         <MDBListGroup style={{ minWidth: '22rem' }} light>
         <MDBListGroupItem className='d-flex justify-content-between'>
             <div className="flex-column">
@@ -70,69 +81,38 @@ export function EditUser() {
                 <div className="text-secondary fs-4">Edit contact info, locaiton, and role.</div>
             </div>
         </MDBListGroupItem>
-        <MDBListGroupItem className='d-flex justify-content-between'>
+        {EditComponent(firstName, lastName, email, phone, handleFirstName, handleLastName, handleEmail, handlePhone)}
+                </MDBListGroup>
+        <MDBListGroup style={{ minWidth: '22rem' }} light>
+            <MDBListGroupItem>
+
             <div className="flex-column d-grid gap-3">
-                <label htmlFor="firstNameId"><h3>Info</h3></label>
-                <input
-                    className="u-full-width fs-5"
-                    type="text"
-                    placeholder="Firstname, e.g. Charlene"
-                    id="firstNameId"
-                    onChange={handleFirstName}
-                    value={firstName}
-                />
-                <input
-                    className="u-full-width fs-5"
-                    type="text"
-                    placeholder="Last Name, e.g. Pham"
-                    id="lastNameId"
-                    onChange={handleLastName}
-                    value={lastName}
-                />
-                <input
-                    className="u-full-width fs-5"
-                    type="text"
-                    placeholder="Email, e.g. charlene@instawork.com"
-                    id="emailId"
-                    onChange={handleEmail}
-                    value={email}
-                />
-                <input
-                    className="u-full-width fs-5"
-                    type="text"
-                    placeholder="Phone, e.g. 415-310-1619"
-                    id="phoneId"
-                    onChange={handlePhone}
-                    value={phone}
-                />
                 <label htmlFor="nameInput"><h3>Role</h3></label>
-                <ul class="list-group list-group-light d-grid gap-3">
-                    <li class="list-group-item">
-                    <label class="form-check-label fs-5" for="defaultCheck1">
+                <div class="d-flex justify-content-between">
+                    <label class="form-check-label fs-5" for="regularId">
                         Regular - Can't delete members
                     </label>
-                    <input class="form-check-input " type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked/>
-                    </li>
-                    <li class="list-group-item">
-                    <label class="form-check-label fs-5" for="exampleRadios3">
+                    <input class="form-check-input" type="radio" onChange={handleAdmin} name="regular" id="regularId" value="regular" checked={!isAdmin}/>
+                </div>
+            </div>
+            </MDBListGroupItem>
+            <MDBListGroupItem class="d-flex justify-content-between">
+                <div>
+                    <label class="form-check-label fs-5" for="adminId">
                         Admin - Can delete members
                     </label>
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" disabled/>
-                    </li>
-                    <li>
-                        <button onClick={() => handleDelete(userId)}>Delete</button>
-                        <button onClick={handleClick} className="button-primary float-end">
-                            Save
-                        </button>
-                    </li>
-                </ul>
-                
-            </div>
-        </MDBListGroupItem>
-        
+                </div>
+                    <input class="form-check-input" type="radio" onChange={handleAdmin} name="admin" id="adminId" value="admin" checked={isAdmin}/>
+            </MDBListGroupItem>
+            <MDBListGroupItem>
+                <button onClick={() => handleDelete(userId)} className="text-danger">Delete</button>
+                <button onClick={handleClick} className="button-primary float-end">
+                    Save
+                </button>
+            </MDBListGroupItem>
         </MDBListGroup>
-        
-        </div>
+                
+    </div>
     </>
   );
 }

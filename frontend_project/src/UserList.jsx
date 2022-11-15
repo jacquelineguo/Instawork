@@ -18,7 +18,7 @@ export function UserList() {
   const navigate = useNavigate()
   const handleOnClick = (id) => navigate(`/edit-user/${id}`, { replace: false });
 
-  const regularCount = useSelector((state) => state.users.entities.find(x => x.isAdmin).length);
+  const regularCount = useSelector((state) => state.users.entities.filter(x => !x.isAdmin).length);
 
   return (
     <div className="container">
@@ -46,12 +46,12 @@ export function UserList() {
                 ) : (
                     <>
                                 {entities.length &&
-                                entities.map(({ id, firstName, lastName, email, phone }, i) => (
+                                entities.map(({ id, firstName, lastName, email, phone, isAdmin }, i) => (
                                 <MDBListGroupItem className='d-flex justify-content-between'>
                                 <div className='d-flex align-items-center'>
                                     <i class="far fa-user fa-4x text-secondary"></i>
                                     <div className="col-9 fs-5" key={i} onClick={()=>handleOnClick(id)}>
-                                        <span class="font-weight-bold">{`${firstName} ${lastName}`}</span>
+                                        <span class="font-weight-bold">{isAdmin ? `${firstName} ${lastName} (admin)`:`${firstName} ${lastName}`}</span>
                                         <div className="text-secondary font-weight-normal">{phone}</div>
                                         <div className="text-secondary font-weight-normal">{email}</div>
                                         
